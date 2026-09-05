@@ -1,6 +1,6 @@
 # Overview
 
-Welcome to my analysis of the Data job market, focusing mainly on Data Analyst roles. I built this project to practice everything I'd learned in Python on a real dataset, and to actually understand the job market I'm trying to break into rather than just guessing statistics at it. It looks at the most in-demand skills, how skill demand shifts from month to month, and where the money actually is for Data Analysts.
+Welcome to my analysis of the Data job market, focusing mainly on Data Analyst roles. I built this project to practice everything I had learned in Python on a real dataset, and to actually understand the job market I'm trying to break into rather than just guessing statistics about it. It looks at the most in-demand skills, how skill demand shifts from month to month, and where the money actually is for Data Analysts.
 
 The data comes from [Luke Barousse's Python Course](https://lukebarousse.com/python), which provided the `lukebarousse/data_jobs` dataset containing job titles, salaries, locations, and required skills for thousands of real postings. Using Python, I explore what skills show up most often, how that demand changes over the year, what these jobs and skills actually pay, and where demand and salary overlap.
 
@@ -245,6 +245,23 @@ adjust_text(texts)
 I then added color-coding by technology category (programming, analyst tools, databases, cloud) to see if any category clustered toward higher pay.
 
 ```python
+df_technology = df['job_type_skills'].copy()
+df_technology = df_technology.drop_duplicates()
+df_technology = df_technology.dropna()
+
+technology_dict = {}
+for row in df_technology:
+    row_dict = ast.literal_eval(row)
+    for key, value in row_dict.items():
+        if key in technology_dict:
+            technology_dict[key] += value
+        else:
+            technology_dict[key] = value
+                
+for key, value in technology_dict.items():
+    technology_dict[key] = list(set(value))
+
+    
 sns.scatterplot(
     data=df_plot,
     x='skill_percent',
