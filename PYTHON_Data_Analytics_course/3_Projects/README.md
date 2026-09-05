@@ -1,29 +1,29 @@
 # Overview
 
-Welcome to my analysis of the data job market, focusing on data analyst roles. I built this project to practice everything I'd learned in Python and Pandas on a real, messy dataset, and to actually understand the job market I'm trying to break into rather than just guessing at it. It looks at the most in-demand skills, how skill demand shifts month to month, and where the money actually is for data analysts.
+Welcome to my analysis of the Data job market, focusing mainly on Data Analyst roles. I built this project to practice everything I'd learned in Python on a real dataset, and to actually understand the job market I'm trying to break into rather than just guessing statistics at it. It looks at the most in-demand skills, how skill demand shifts from month to month, and where the money actually is for Data Analysts.
 
-The data comes from [Luke Barousse's Python Course](https://lukebarousse.com/python), which provided the `data_jobs` dataset containing job titles, salaries, locations, and required skills for thousands of real postings. Using Python, I explore what skills show up most often, how that demand changes over the year, what these jobs and skills actually pay, and where demand and salary overlap.
+The data comes from [Luke Barousse's Python Course](https://lukebarousse.com/python), which provided the `lukebarousse/data_jobs` dataset containing job titles, salaries, locations, and required skills for thousands of real postings. Using Python, I explore what skills show up most often, how that demand changes over the year, what these jobs and skills actually pay, and where demand and salary overlap.
 
 # The Questions
 
 Below are the questions I wanted to answer in this project:
 
-1. What are the skills most in demand for the top 3 most popular data roles?
+1. What are the skills most in demand for the top 3 most popular Data roles?
 2. How are in-demand skills trending for Data Analysts?
 3. How well do jobs and skills pay for Data Analysts?
-4. What are the optimal skills for data analysts to learn? (High demand AND high paying)
+4. What are the optimal skills for Data Analysts to learn? (High demand and high paying)
 
 # Tools I Used
 
 For this project, I used:
 
 - **Python:** the core of the analysis. I mainly worked with:
-  - **Pandas** — cleaning, filtering, grouping, and reshaping the data
-  - **Matplotlib** — building the initial charts
-  - **Seaborn** — for the polished versions of the charts, once I moved past the plain Matplotlib output
-- **Jupyter Notebooks** — ran everything here so I could keep code, notes, and charts together as I went
-- **Visual Studio Code** — where I actually wrote and ran the notebooks
-- **Git & GitHub** — version control and hosting the project
+  - **Pandas** - cleaning, filtering, grouping, and reshaping the data
+  - **Matplotlib** - building the initial charts
+  - **Seaborn** - for the polished versions of the charts, once I moved past the plain Matplotlib output
+- **Jupyter Notebooks** - ran everything here so I could keep code, notes, and charts together as I went
+- **Visual Studio Code** - where I actually wrote and ran the notebooks
+- **Git & GitHub** - version control and hosting the project
 
 # Data Preparation and Cleanup
 
@@ -51,7 +51,7 @@ df['job_skills'] = df['job_skills'].apply(lambda x: ast.literal_eval(x) if pd.no
 # converting string formatted list to actual list
 ```
 
-The `job_posted_date` column came in as plain text, so I converted it to an actual datetime — otherwise I couldn't group by month later. The `job_skills` column looked like a list (`['Python', 'SQL']`) but was actually stored as a string, so `ast.literal_eval` was needed to turn it back into a real Python list I could explode and count.
+The `job_posted_date` column came in as str text, so I converted it to an actual datetime object - otherwise I couldn't group by month later. The `job_skills` column looked like a list (`['Python', 'SQL']`) but was actually stored as a string, so `ast.literal_eval` was needed to turn it back into a real Python list I could explode and count on it.
 
 ## Filter US Jobs
 
@@ -104,9 +104,9 @@ fig.tight_layout()
 
 ### Insights
 
-- SQL shows up constantly — it's the top skill for Data Analysts (51%) and the top skill for Data Engineers (68%), and still lands second for Data Scientists (51%). If I only had time to learn one thing, it'd be this.
+- SQL shows up constantly - it's the top skill for Data Analysts (51%) and the top skill for Data Engineers (68%), and still lands second for Data Scientists (51%). If I only had time to learn one thing, it'd be this.
 - Python is the clear anchor skill for Data Scientists, appearing in 72% of postings, and it's also strong for Data Engineers (65%). For Data Analysts it's lower (27%), sitting behind SQL and Excel.
-- Data Analyst roles lean on more general tools — Excel (41%) and Tableau (28%) — while Data Engineer roles want more specialized infrastructure skills like AWS (43%), which makes sense given the difference in what each role actually does day to day.
+- Data Analyst roles lean on more general tools - Excel (41%) and Tableau (28%) - while Data Engineer roles want more specialized infrastructure skills like AWS (43%), which makes sense given the difference in what each role actually does day to day.
 
 ## 2. How are in-demand skills trending for Data Analysts?
 
@@ -146,13 +146,13 @@ adjust_text(texts)
 
 ### Insights
 
-- SQL stayed the most requested skill all year, but it did trend downward — from around 63% in January to about 52% by December.
+- SQL stayed the most requested skill all year, but it did trend downward - from around 63% in January to about 52% by December.
 - Excel dipped mid-year but climbed sharply from October onward, ending the year as the second most requested skill by a wide margin.
-- Python and Tableau tracked each other closely for most of the year, crossing back and forth, while Power BI stayed consistently the least requested of the top 5 — though it held steady rather than dropping off.
+- Python and Tableau tracked each other closely for most of the year, crossing back and forth, while Power BI stayed consistently the least requested of the top 5 - though it held steady rather than dropping off.
 
 ## 3. How well do jobs and skills pay for Data Analysts?
 
-First I looked at the salary distributions across the top 6 data job titles overall (not just Data Analyst) to see how the role compares to others. Then I narrowed in on just Data Analyst postings and compared the highest-*paying* skills against the most *in-demand* skills — since those turned out to be two very different lists.
+First I looked at the salary distributions across the top 6 data job titles overall (not just Data Analyst) to see how the role compares to others. Then I narrowed in on just Data Analyst postings and compared the highest-*paying* skills against the most *in-demand* skills - since those turned out to be two very different lists.
 
 View my notebook here: [4_Salary_Analysis.ipynb](./4_Salary_Analysis.ipynb)
 
@@ -179,8 +179,8 @@ plt.ylabel(' ')
 ### Insights
 
 - Senior Data Scientist has both the highest median salary and the widest spread of the six roles, with a long tail of outliers reaching past $500K.
-- Data Analyst has the tightest, most predictable salary range of the six — fewer extreme outliers than the more senior/specialized roles, which tracks with it being the more entry-level position.
-- Salary and seniority move together, but so does the *variance* — Senior roles don't just pay more on average, they also have a much wider range of outcomes.
+- Data Analyst has the tightest, most predictable salary range of the six - fewer extreme outliers than the more senior/specialized roles, which tracks with it being the more entry-level position.
+- Salary and seniority move together, but so does the *variance* - Senior roles don't just pay more on average, they also have a much wider range of outcomes.
 
 #### Highest Paid & Most In-Demand Skills for Data Analysts
 
@@ -197,13 +197,13 @@ sns.barplot(data=df_us_da_skills, x='median', y=df_us_da_skills.index, ax=ax[1],
 
 ### Insights
 
-- The highest-paid skills (dplyr, Bitbucket, GitLab, Solidity) are barely ever asked for — they're niche, but pay close to $200K when they do show up.
+- The highest-paid skills (dplyr, Bitbucket, GitLab, Solidity) are barely ever asked for - they're niche, but pay close to $200K when they do show up.
 - The most in-demand skills (Python, Tableau, R, SQL, Excel) pay noticeably less, closer to $85K–$100K, and none of them overlap with the highest-paid list at all.
 - This was the clearest signal in the whole project: demand and pay aren't the same thing. A skill being common doesn't mean it pays the most, and a skill paying the most doesn't mean anyone's actually asking for it.
 
 ## 4. What are the most optimal skills to learn for Data Analysts?
 
-To pull the last two questions together, I combined skill demand percentage and median salary into one view, then filtered down to only skills appearing in more than 5% of postings — so I wasn't looking at one-off outlier skills that only had a handful of postings.
+To pull the last two questions together, I combined skill demand percentage and median salary into one view, then filtered down to only skills appearing in more than 5% of postings - so I wasn't looking at one-off outlier skills that only had a handful of postings.
 
 View my notebook here: [5_Optimal_Skills.ipynb](./5_Optimal_Skills.ipynb)
 
@@ -236,8 +236,8 @@ adjust_text(texts)
 
 ### Insights
 
-- Python sits in the best spot on the whole chart — it's both in the top tier for salary (~$97K) and shows up in about a third of postings, so it's genuinely worth the time investment.
-- SQL is the most in-demand skill by far (over 55% of postings) but sits in the middle of the pack for salary, confirming what I found in question 3 — being common doesn't mean being well paid.
+- Python sits in the best spot on the whole chart - it's both in the top tier for salary (~$97K) and shows up in about a third of postings, so it's genuinely worth the time investment.
+- SQL is the most in-demand skill by far (over 55% of postings) but sits in the middle of the pack for salary, confirming what I found in question 3 - being common doesn't mean being well paid.
 - Oracle stood out as the highest-paying skill on this chart despite fairly low demand, which lines up with the "rare but well-paid" pattern from the previous question.
 
 ### Visualizing Different Technologies
@@ -259,17 +259,17 @@ sns.scatterplot(
 
 ### Insights
 
-- Programming skills (Python, SQL, R, Go) cluster toward the top of the salary range compared to analyst tools — actual coding ability seems to carry a real premium over just knowing a BI tool.
-- Database skills like Oracle and SQL Server land among the highest-paid points on the whole chart, even with fairly modest demand — a smaller, more specialized crowd knows these.
-- Analyst tools (Excel, PowerPoint, Word, Tableau, Power BI) dominate the high-demand, lower-salary corner of the chart — useful for actually getting hired, but not what pushes salary up on their own.
+- Programming skills (Python, SQL, R, Go) cluster toward the top of the salary range compared to analyst tools - actual coding ability seems to carry a real premium over just knowing a BI tool.
+- Database skills like Oracle and SQL Server land among the highest-paid points on the whole chart, even with fairly modest demand - a smaller, more specialized crowd knows these.
+- Analyst tools (Excel, PowerPoint, Word, Tableau, Power BI) dominate the high-demand, lower-salary corner of the chart - useful for actually getting hired, but not what pushes salary up on their own.
 
 # What I Learned
 
-This project was my first time working with a real, messy dataset from start to finish instead of a toy example. A few things that actually stuck:
+This project was my first time working with a real dataset from start to finish. A few things that actually stuck:
 
-- **Data cleaning comes first, always.** The date and skills columns looked fine at a glance but were completely unusable until converted — I hit `ast.literal_eval` errors, `.dt` accessor errors, and chained-assignment bugs before I got this right.
+- **Data cleaning comes first, always.** The date and skills columns looked fine at a glance but were completely unusable until converted - I hit `ast.literal_eval` errors, `.dt` accessor errors, and chained-assignment bugs before I got this right.
 - **`explode()` and pivot tables are the backbone of this kind of analysis.** Almost every question came down to: explode the skills list into rows, then pivot/group to count or average.
-- **Percentages beat raw counts almost every time.** Comparing raw skill counts across job titles or months was misleading since posting volume itself changes — converting to a percentage of that group's total was the fix, and I had to relearn this every time I forgot it.
+- **Percentages beat raw counts almost every time.** Comparing raw skill counts across job titles or months was misleading since posting volume itself changes - converting to a percentage of that group's total was the fix, and I had to relearn this every time I forgot it.
 - **Debugging matplotlib label overlap** taught me `adjustText` exists and is worth reaching for anytime chart labels collide, instead of manually nudging coordinates by trial and error.
 
 # Insights
@@ -277,15 +277,15 @@ This project was my first time working with a real, messy dataset from start to 
 Looking across all four questions together:
 
 - **Demand and salary are two separate axes, not one.** The skills everyone asks for (SQL, Excel) aren't the skills that pay the best (Oracle, dplyr, GitLab), and vice versa. The real strategy is finding the overlap — which is exactly what Python turned out to be for Data Analysts.
-- **Skill demand isn't static.** SQL trended down over the year while Excel spiked at the end — a snapshot from any single month would have given a misleading picture.
+- **Skill demand isn't static.** SQL trended down over the year while Excel spiked at the end - a snapshot from any single month would have given a misleading picture.
 - **Programming ability carries a real salary premium** over tool-only skills, even within the same job title.
 
 # Challenges I Faced
 
 - **Chained assignment and copy-vs-view bugs.** I hit `SettingWithCopyWarning` more than once, and one chained assignment (`df = df['col'] = value`) actually broke a DataFrame into a Series and caused a recursion error when I tried to print it.
-- **Type conversion after cleaning.** Dropping missing values didn't automatically convert columns back from float to int — something I had to explicitly fix with `.astype(int)` each time.
+- **Type conversion after cleaning.** Dropping missing values didn't automatically convert columns back from float to int - something I had to explicitly fix with `.astype(int)` each time.
 - **Getting labels readable on crowded charts.** My first attempt at labeling the skills-trend line chart had names overlapping into unreadable text, and I doubled labels by accidentally leaving two separate labeling loops in the same cell before catching it.
 
 # Conclusion
 
-This project took me from "I know Pandas syntax" to actually using it to answer real questions about a real job market — and the biggest lesson wasn't a syntax one, it was realizing that demand and pay don't move together. For me specifically, it reinforced that SQL and Python are worth prioritizing, since they're the rare skills that are both commonly asked for and well paid. I'll be applying the same workflow (clean → explode/group → visualize → find the story) again once I move on to Power BI or Tableau next.
+This project took me from "I know Pandas syntax" to actually using it to answer real questions about a real job market - and the biggest lesson wasn't a syntax one, it was realizing that demand and pay don't move together. For me specifically, it reinforced that SQL and Python are worth prioritizing, since they're the rare skills that are both commonly asked for and well paid. I'll be applying the same workflow (clean → explode/group → visualize → find the story) again once I move on to Power BI or Tableau next.
